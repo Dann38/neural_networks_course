@@ -1,0 +1,189 @@
+\documentclass[]{beamer}
+
+% Графика ----------------------------
+\usepackage{graphicx} 
+% Математика -------------------------
+\usepackage{cmap} 
+\usepackage{amsmath}
+% Русский язык -----------------------
+\usepackage[utf8]{inputenc} 
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{graphicx}% Для картинки
+\usepackage{subcaption}%Для картинки
+\usepackage{float} %Для картинки
+\usepackage{wrapfig}%Для оптикания картинок
+\ifxetex
+\usepackage{fontspec}
+\setmainfont[
+        ItalicFont=TimesNewRoman-it.ttf,
+        BoldFont=TimesNewRoman-bold.ttf,
+        Ligatures=TeX
+]{TimesNewRoman.ttf}
+\fi
+% Для анимации -----------------------
+\usepackage{animate}
+\usepackage{tikz}
+
+% Литература -------------------------
+\usepackage[style=ieee]{biblatex}
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+\addbibresource{main.bib}
+
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+\mode<presentation>
+{
+  \usetheme{Madrid}
+  %\usecolortheme{spruce}
+  \usefonttheme{serif}    % or try default, structurebold, ...
+
+} 
+
+% On Overleaf, these lines give you sharper preview images.
+% You might want to `comment them out before you export, though.
+\usepackage{pgfpages}
+\pgfpagesuselayout{resize to}[%
+  physical paper width=8in, physical paper height=6in]
+
+% Here's where the presentation starts, with the info for the title slide
+\title[Тервер в МО]{Теория вероятностей в машинном обучение}
+\author[Копылов Даниил]{Копылов Д. Е.}
+\date{25 июля 2024 года}
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% \begin{frame}{Содержание}
+%  \tableofcontents
+% \end{frame}
+\begin{frame}{События и их вероятность}
+	\begin{block}{События}
+		Для теории вероятности мир событиен. Событие одно из базовое понятие в теории вероятностей.
+		События обозначают заглавными буквами английского алфавита $A, \; B\; ,...,Z$.
+	\end{block}
+	\begin{block}{Вероятность события}
+		Вероятность наступления события обозначается $P(A)$ и характеризуется величиной из отрезка $[0, 1]$, 
+		где 0 - событие никогда не наступит, 1 - событие обязательно наступит.
+	\end{block}
+	
+	\begin{block}{Пример событий}
+		$A$ - Идет дождь;
+
+		$B$ - Ребенок вернулся с прогулки в 16:30
+
+		$C$ - Модель предсказывает результаты с точностью выше 90\%
+	
+	\end{block}
+\end{frame}
+\begin{frame}{Условная вероятность и формула Байесса}
+	Практически всегда события осуществляются совместно с другими событиями, и часто нелязя перестать наблюдать совместные события.
+	Например $P(\text{A и B})$,  $A$ - ребенок вернулся с прогулки в 16:30, $B$ - дождь начался в 16:15.
+	
+	Иногда бывает интересно рассмотреть как будет вести себя одна величина, при определенном значение другой. Такая вероятность называется 
+	условной и обозначается:
+	$$P(A|B) = \frac{P(\text{A и  B})}{P(B)}$$
+
+	Замечая особенность:
+	$$P(A|B)\cdot P(B) = P(\text{A и B})$$
+	$$P(B|A)\cdot P(A) = P(\text{A и B})$$
+	$$P(A|B)\cdot P(B) = P(B|A) \cdot P(A)$$
+	\begin{equation}
+		P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}
+	\end{equation}
+\end{frame}
+\begin{frame}{Совместные и несовместные события}
+	\begin{block}{}
+		Событие несовместные, если $P(\text{A и B}) = P(A)P(B)$, т.е. $P(A|B) = P(A)$, $P(B|A) = P(B)$
+	\end{block}
+	\begin{block}{Для совместных событий операция "или"}
+		Выполнение хотя бы одного из событий ("или"):
+		$$P(\text{A или B}) = P(A) + P(B) - P(\text{A и B})$$
+	\end{block}
+	\begin{block}{Для несовместных событий операция "или"}
+		Выполнение хотя бы одного из событий ("или"):
+		$$P(\text{A или B}) = P(A) + P(B)$$
+	\end{block}
+
+\end{frame}
+\begin{frame}{Случайные величины}
+	\begin{block}{Не ясность}
+		Иногда бывает, что ситуацию приходится описывать сразу большим множеством событий. 
+
+		$A_1$ -- дождь начнется в 0:00,
+
+		$A_2$ - дождь начнется в 0:01,
+
+		...,
+
+		$A_{1440}$ - дождь начнется в 23:59.
+		
+		
+		Упростить себе жизнь можно введя параметр $\xi$. Теперь можно сказать:
+
+		"Дождь начнется через $\xi$ минут после наступления полночи".
+
+	\end{block}
+	\begin{block}{Случайная величина}
+		В таком случае случайное не событие (которое наступило или нет), а величина.
+	\end{block}
+\end{frame}
+\begin{frame}{}
+	\begin{block}{}
+		Если вероятность $P(A_i) = p_i, \quad i = 1, 2,..., 1440$, 
+
+		то вероятность $P(\xi = i) = p_i, \quad i = 1, 2,..., 1440.$
+
+		
+		Теперь мы говорим об вероятностях случайной величены, а не о вероятносте наступления события
+	\end{block}
+
+	\begin{block}{}
+		В реальносте же можно говорить об вещественных числах, тогда событие невозможно описать 
+		просто перечислев варианты: Температура воздуха будет $\xi$ градусов (без округления).
+	\end{block}
+
+	\begin{block}{}
+		 Ястно, что температура \textit{почти наверное никогда}, не будет равняться 17 градусам ровно.
+		 В случае вещественных чисел говорят об плотносте распределения величины и интервале в котором она может лежать. 
+	\end{block}
+\end{frame}
+
+\begin{frame}{Функция плотности вероятности в случае вещественной случайной величины}	
+	\begin{block}{}
+	\begin{equation}
+		P(\xi \in (\omega_1, \omega_2)) = \int_{\omega_1}^{\omega_2} p(\xi) d \xi ,
+	\end{equation}
+	\begin{equation}
+		\int_{-\infty}^{+\infty} p(\xi) d\xi = 1, \quad  p(\xi) \geq 0
+	\end{equation}
+	$p(\xi)$ - функция плотности распределения.
+	\end{block}
+        Когда говорим о дискретных величинах с индексами из $I$, требуется выполнения следующих условий:
+	$$\sum_{i \in I} p_i = 1, \quad p_i \geq 0 $$
+\end{frame}
+
+\begin{frame}{Функции от случайных величин}
+	Со случайными величинами можно совершать привычные операции, только ответ также становится случайной величиной.
+
+	$$\eta = f(\xi)$$
+
+	Для того, чтоб можно было оценивать и случайные функции, вводятся понятие "математическое ожидание":
+	\begin{equation}
+		\mathbb{E}_{\xi \sim P} f(\xi) = \int_{-\infty}^{+\infty} p(\xi)f(\xi)d\xi
+	\end{equation}
+
+	Для дискретного случая имеет место понятие среднее значение:
+	\begin{equation}
+		\mathbb{E}_{\xi \sim P} f(\xi) = \frac{1}{n} \sum_{i=1}^{n} p(\xi)f(\xi)
+	\end{equation}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{bibliography}
+% \printbibliography
+\printbibliography
+\end{frame}
+\end{document}
