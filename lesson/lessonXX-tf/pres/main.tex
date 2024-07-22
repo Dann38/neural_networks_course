@@ -1,0 +1,103 @@
+\documentclass[]{beamer}
+
+% Графика ----------------------------
+\usepackage{graphicx} 
+% Математика -------------------------
+\usepackage{cmap} 
+\usepackage{amsmath}
+% Русский язык -----------------------
+\usepackage[utf8]{inputenc} 
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{graphicx}% Для картинки
+\usepackage{subcaption}%Для картинки
+\usepackage{float} %Для картинки
+\usepackage{wrapfig}%Для оптикания картинок
+\ifxetex
+\usepackage{fontspec}
+\setmainfont[
+        ItalicFont=TimesNewRoman-it.ttf,
+        BoldFont=TimesNewRoman-bold.ttf,
+        Ligatures=TeX
+]{TimesNewRoman.ttf}
+\fi
+% Для анимации -----------------------
+\usepackage{animate}
+\usepackage{tikz}
+
+% Листинг кода
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+% Литература -------------------------
+\usepackage[style=ieee]{biblatex}
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+\addbibresource{main.bib}
+
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+\mode<presentation>
+{
+  \usetheme{Madrid}
+  %\usecolortheme{spruce}
+  \usefonttheme{serif}    % or try default, structurebold, ...
+
+} 
+
+% On Overleaf, these lines give you sharper preview images.
+% You might want to `comment them out before you export, though.
+\usepackage{pgfpages}
+\pgfpagesuselayout{resize to}[%
+  physical paper width=8in, physical paper height=6in]
+
+% Here's where the presentation starts, with the info for the title slide
+\title[NN tf]{Своя нейронная сеть в tensorflow}
+\author[Копылов Даниил]{Копылов Д. Е.}
+\date{17 июля 2024 года}
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% \begin{frame}{Содержание}
+%  \tableofcontents
+% \end{frame}
+\begin{frame}{Ключевые объекты при проектирование нейронной сети}
+	\begin{block}{}
+		\begin{enumerate}
+			\item Модель
+			\item Слой
+			\item Функция ошибки
+		\end{enumerate}
+	\end{block}
+\end{frame}
+\begin{frame}{Модель с одним слоем}
+\lstinputlisting[language=Python]{model.py}
+\end{frame}
+\end{document}
