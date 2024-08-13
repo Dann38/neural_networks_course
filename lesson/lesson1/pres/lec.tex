@@ -1,0 +1,51 @@
+\documentclass[12pt]{article}
+\usepackage[noxcolor]{beamerarticle}
+% Графика ----------------------------
+\usepackage{graphicx} 
+% Математика -------------------------
+\usepackage{cmap} 
+\usepackage{amsmath}
+% Русский язык -----------------------
+\usepackage[utf8]{inputenc} 
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+
+% Для включение определенной лекции
+\includeonlylecture{lec1}
+
+
+% Размер сторон:
+% ширина – 128 мм, высота – 96 мм (соотношение сторон 4:3).
+\title{Искусственные нейронные сети}
+\author[Даниил Копылов]{Копылов Д.Е., Михайлов А.А.}
+% \date{}
+\institute[ИДСТУ СО РАН, ИСП РАН, ИМИТ ИГУ]{
+\inst{1}Институт динамики систем и теории управления им. В.М. Матросова Сибирского отделения Российской академии наук \and
+\inst{2}Институт системного программирования им. В.П. Иванникова \\Российской академии наук \and
+\inst{3}Институт математики и информационных технологий \\Иркутский государственный университет
+}
+
+%\insertauthor, \insertdate, \insertinstitute, \inserttitle, \insertsubtitle и \inserttitlegraphic
+
+\begin{document}
+\begin{frame}
+    \maketitle
+\end{frame}
+
+\lecture[Задача классификации]{Задача классификации}{lec2}
+\begin{frame}{Лекция 2}
+\insertlecture
+% \insertshortlecture %короткое название лекции
+\end{frame}
+\begin{frame}{формальная постановка задачи}
+    Пусть есть два множества $X$ - множества объектов, $Y$ - множество ответов и предполагается,
+    что существует функциональная зависимость 
+    \begin{equation}
+        f:X \to Y
+    \end{equation}
+\end{frame}
+\begin{frame}
+    \url{http://intsys.msu.ru/staff/mironov/machine_learning_vol1.pdf}
+    \url{}
+\end{frame}
+\end{document}
